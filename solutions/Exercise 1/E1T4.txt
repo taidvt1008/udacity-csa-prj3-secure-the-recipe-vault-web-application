@@ -1,0 +1,15 @@
+Based on the architecture diagram, and the steps you have taken so far to upload data and access the application web service, identify at least 2 obvious poor practices as it relates to security. Include justification.
+
+
+# Poor practice 1
+The EC2 instance "Web Service Instance" is located at public subnet. This will increase surface interface for attackers.
+Also security group of this instance is opening to allow all ports access from internet. We should restrict access of ingress and egress here. 
+
+We can bring this EC2 "Web Service Instance" into the private subnet and configure loadbalancer to access the EC2 application sever and listen to application port. All public access to the application should be via loadbalancer.
+For security group of this instance, we should configure the specific rule for ingress from loadbalancer and egress to S3 "Free Recipes".
+ 
+
+# Poor practice 2
+The role policy for "Web Service Instance" is set to allow all S3 buckets accessible from the application server with full permissions.
+
+We should follow the principle of least privilege: restrict permissions of application to only access for specific S3 bucket ("Free Recipes" here) and only provision for necessary permissions.

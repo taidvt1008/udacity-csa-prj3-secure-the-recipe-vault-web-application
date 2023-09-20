@@ -1,0 +1,8 @@
+# Identify 2-3 changes that can be made to our environment to prevent an ssh brute force attack from the internet.
+- Disable SSH password login on the application server instance.
+  If still use password to login, configure to use complex passwords with recommended rules.
+- Restrict the network traffic that can reach the application server by setting config for Security Group to restrict the IPs that are allowed to communicate to application server.
+
+
+# Neither instance should have had access to the secret recipes bucket, in the even that instance API credentials were compromised how could we have prevented access to sensitive data.
+- We can follow the principle of least privilege: set the policy of "Web Service Instance" that only allow access to specific bucket (free recipe bucket)

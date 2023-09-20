@@ -1,0 +1,11 @@
+Research and analyze which of the vulnerabilities appear to be related to the code that was deployed for the environment in this project.
+- "Web Service Instance": process 'sshd' is listening on TCP port 22 which is associated with 'SSH' and is reachable from the internet
+- "Web Service Instance" is configured to support password authentication over SSH. Password authentication is susceptible to brute-force attacks and should be disabled in favor of key-based authentication where possible.
+- On "Web Service Instance", process 'python3' is listening on UDP port 5000 which is reachable from the internet
+
+
+
+Bonus - provide recommendations on how to remediate the vulnerabilities.
+- Edit the Security Group "WebAppSG" of this instance to remove access from the internet on port 22
+- It is recommended that disable password authentication over SSH on EC2 instances and enable support for key-based authentication instead. This significantly reduces the likelihood of a successful brute-force attack. If password authentication is supported, it is important to restrict access to the SSH server to trusted IP addresses.
+- Edit the Security Group "WebAppSG" of this instance to remove access from the internet on port 5000

@@ -1,0 +1,23 @@
+# Identify tools that will allow you to do the following:
+## Scan infrastructure as code templates
+CFRipper: a Library and CLI security analyzer for AWS CloudFormation templates. You can use CFRipper to prevent deploying insecure AWS resources into your Cloud environment. You can write your own compliance checks by adding new custom plugins.
+
+### Example vulnerability
+- FullWildcardPrincipalRule: rootRole should not allow full wildcard '*', or wildcard in account ID like 'arn:aws:iam::*:12345' at '*'
+- IAMRolesOverprivilegedRule: Role 'rootRole' contains an insecure permission '*' in policy 'root'
+
+
+##Scan AMI’s or containers for OS vulnerabilities
+Amazon Inspector: native tool of AWS.
+(ref: https://aws.amazon.com/vi/blogs/security/how-to-scan-ec2-amis-using-amazon-inspector/)
+
+### Example vulnerability
+Look at this capture in the same foler: example-scan-ami-result.png
+
+
+##Scan an AWS environment for cloud configuration vulnerabilities
+AWS Config: native AWS tool.
+
+### Example vulnerability
+excludePermissionBoundaryPolicy: Policy has full access to following service: ec2:*
+
